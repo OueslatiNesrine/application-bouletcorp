@@ -6,9 +6,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import com.e2etests.automation.utils.BasePage;
 import com.e2etests.automation.utils.Setup;
 
-public class AleatoirePage {
+public class AleatoirePage extends BasePage  {
 	/* @FindBy */
 	@FindBy(how = How.CSS, using = "div[id='tabvanilla'] a:nth-child(3)")
 	public static WebElement btnAleatoire;
@@ -27,20 +28,20 @@ public class AleatoirePage {
 	/* Methods */
 	public void openURL(String url) {
 		Setup.getDriver().get(url);
-		System.out.println(url);
+		log.error(url);
 	}
 
 	public void verify() {
 		String actuallUrl = Setup.getDriver().getCurrentUrl();
 		Assert.assertNotEquals("https://bouletcorp.com/", actuallUrl);
-		System.out.println(actuallUrl);
+		log.error(actuallUrl);
 	}
 
 	public void verifyTwitter() {
 		String attValue = btnTwitter.getAttribute("title");
-		System.out.println("The attribute value is :" + attValue);
+		log.error("The attribute value is :" + attValue);
 		boolean result = btnTwitter.isDisplayed();
-		System.out.println(result);
+		log.error(result);
 		// Dimension dimensions = btnTwitter.getSize();
 		// System.out.println("Hight: " + dimensions.height + "Width: " +
 		// dimensions.width);
@@ -50,16 +51,16 @@ public class AleatoirePage {
 
 	public void verifyFacebook() {
 		String attValue = btnFacebook.getAttribute("title");
-		System.out.println("The attribute value is :" + attValue);
+		log.error("The attribute value is :" + attValue);
 		boolean result = btnFacebook.isDisplayed();
-		System.out.println(result);
+		log.error(result);
 	}
 
 	public void verifyTumblr() {
 		String attValue = btnTumblr.getAttribute("title");
-		System.out.println("The attribute value is :" + attValue);
+		log.error("The attribute value is :" + attValue);
 		boolean result = btnTumblr.isDisplayed();
-		System.out.println(result);
+		log.error(result);
 	}
 
 }
