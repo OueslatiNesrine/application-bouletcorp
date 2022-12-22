@@ -7,9 +7,11 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 import com.e2etests.automation.utils.BasePage;
+import com.e2etests.automation.utils.ConfigFileReader;
 import com.e2etests.automation.utils.Setup;
 
-public class AleatoirePage extends BasePage  {
+public class AleatoirePage extends BasePage {
+	public ConfigFileReader configFileReader;
 	/* @FindBy */
 	@FindBy(how = How.CSS, using = "div[id='tabvanilla'] a:nth-child(3)")
 	public static WebElement btnAleatoire;
@@ -22,7 +24,7 @@ public class AleatoirePage extends BasePage  {
 
 	public AleatoirePage() {
 		PageFactory.initElements(Setup.getDriver(), this);
-
+		this.configFileReader = new ConfigFileReader();
 	}
 
 	/* Methods */
@@ -33,7 +35,7 @@ public class AleatoirePage extends BasePage  {
 
 	public void verify() {
 		String actuallUrl = Setup.getDriver().getCurrentUrl();
-		Assert.assertNotEquals("https://bouletcorp.com/", actuallUrl);
+		Assert.assertNotEquals(configFileReader.getProperties("home.url.bouletcorp"), actuallUrl);
 		log.error(actuallUrl);
 	}
 
