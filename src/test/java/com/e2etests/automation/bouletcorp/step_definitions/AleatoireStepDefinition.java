@@ -2,6 +2,7 @@ package com.e2etests.automation.bouletcorp.step_definitions;
 
 import java.time.Duration;
 
+import org.junit.Assert;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.e2etests.automation.bouletcorp.page_objects.AleatoirePage;
@@ -34,22 +35,22 @@ public class AleatoireStepDefinition {
 
 	@Then("Je verifie la page change")
 	public void jeVerifieLaPageChange() {
-		aleatoirePage.verify();
+		aleatoirePage.UrlChanged();
 	}
 
-	@Then("Je verifie boutton twitter")
-	public void jeVerifieBouttonTwitter() {
-		aleatoirePage.verifyTwitter();
+	@And("les widgets facebouk, twitter et tumblr sont bien affiches")
+	public void lesWidgetsFaceboukTwitterEtTumblrSontBienAffiches() {
+		boolean facebook = aleatoirePage.isElementDisplayed(AleatoirePage.btnFacebook);
+		Assert.assertTrue(facebook);
+		boolean twitter = aleatoirePage.isElementDisplayed(AleatoirePage.btnTwitter);
+		Assert.assertTrue(twitter);
+		boolean tumblr = aleatoirePage.isElementDisplayed(AleatoirePage.btnTumblr);
+		Assert.assertTrue(tumblr);
+		
+	   
 	}
 
-	@And("Je verifie boutton facebook")
-	public void jeVerifieBouttonFacebook() {
-		aleatoirePage.verifyFacebook();
-	}
 
-	@And("je verifie boutton tumblr")
-	public void jeVerifieBouttonTumblr() {
-		aleatoirePage.verifyTumblr();
-	}
+
 
 }

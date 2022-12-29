@@ -27,16 +27,23 @@ public class AleatoirePage extends BasePage {
 		this.configFileReader = new ConfigFileReader();
 	}
 
+	
 	/* Methods */
 	public void openURL(String url) {
 		Setup.getDriver().get(url);
 		log.error(url);
 	}
 
-	public void verify() {
+	public void UrlChanged() {
 		String actuallUrl = Setup.getDriver().getCurrentUrl();
 		Assert.assertNotEquals(configFileReader.getProperties("home.url.bouletcorp"), actuallUrl);
 		log.error(actuallUrl);
+	}
+	
+	
+	public Boolean isElementDisplayed(WebElement element) {
+		Boolean isElemnetDisplayed = element.isDisplayed();
+		return isElemnetDisplayed;
 	}
 
 	public void verifyTwitter() {
@@ -44,11 +51,6 @@ public class AleatoirePage extends BasePage {
 		log.error("The attribute value is :" + attValue);
 		boolean result = btnTwitter.isDisplayed();
 		log.error(result);
-		// Dimension dimensions = btnTwitter.getSize();
-		// System.out.println("Hight: " + dimensions.height + "Width: " +
-		// dimensions.width);
-		// Point point = btnTwitter.getLocation();
-		// System.out.println("x cordinate: " + point.x + "Y cordinate: " + point.y);
 	}
 
 	public void verifyFacebook() {
